@@ -1,3 +1,3 @@
 A small web application to stimulate activities of a bank. 
 
-ClIT Japanese Project 
+Class: IT Japanese Project, semester 20202, RHUST.
