@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-size: cover;
+    background-image: url("Color Edited BG.jpg");
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
