@@ -16,7 +16,9 @@
 /*==============================================================*/
 
 .menuContain {
+    width: 100%;
     height: 100%;
+    z-index: 10;
 }
 
 .menuContain>li {
@@ -29,6 +31,11 @@
     padding: 0;
     float: left;
 }
+
+.menuContain>nav {
+    float: left;
+}
+
 .menuContain>.blankSpace {
     border: none;
 }

@@ -1,6 +1,7 @@
 #searchBar {
+    float: right;
     border: none;
-    position: absolute;
+    position: relative;
     right: 50px;
     width: 500px;
     height: 50px;

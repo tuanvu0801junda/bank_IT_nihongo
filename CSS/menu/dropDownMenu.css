@@ -1,3 +1,7 @@
+#navDropdownMenu {
+	position: relative;
+}
+
 #navDropdownMenu ul {
 	-webkit-font-smoothing: antialiased;
 	list-style: none;
@@ -44,7 +48,7 @@
 #navDropdownMenu li ul {
 	float: left;
 	left: 0;
-	width:150%;
+	width:100%;
 	opacity: 0;
 	position: absolute;
 	top: 35px;
