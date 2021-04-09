@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <head >
         <link href="/favicon.ico" type="image/x-icon" rel="icon" />
-        <link rel="stylesheet" href="../CSS/body/divBody.css"/>
-        <link rel="stylesheet" href="../CSS/body/bodyWeb.css"/>
-        <link rel="stylesheet" href="../CSS/menu/buttonStyles.css"/>
-        <link rel="stylesheet" href="../CSS/menu/menuLayout.css"/>
-        <link rel="stylesheet" href="../CSS/menu/dropDownMenu.css"/>
+        <link rel="stylesheet" href="../static/bodyWeb/divBody.css"/>
+        <link rel="stylesheet" href="../static/bodyWeb/bodyWeb.css"/>
+        <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
+        <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
+        <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
         <!--<script src="jquery.js"></script> -->
     </head>
     <body>
 <!-- =====================================Website Header================================================ -->
 
         <div id="topDiv">
-            <link rel="stylesheet" href="../CSS/header/headStyles.css"/>
-            <img src="../CSS/Aidoru Bank Logo update.png" usemap="#bankLabel">
+            <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
+            <img src="../static/images/Aidoru Bank Logo update.png" usemap="#bankLabel">
             <map name="bankLabel">
-                <area shape="rect" coords="0, 0, 739, 607" href="index.html">
+                <area shape="rect" coords="0, 0, 739, 607" href="localhost:5000">
             </map>
 
             <nav style="align-items: center;">
@@ -59,7 +59,7 @@
                     </li>
                 </nav>
 
-                <link rel="stylesheet" href="../CSS/menu/searchBar.css"/>
+                <link rel="stylesheet" href="../static/topMenu/searchBar.css"/>
                 <div id="searchBar">
                     <input type="text" placeholder="Search.." id="searchBox">
                 </div>
@@ -71,7 +71,7 @@
         <div id="divBody">
             <div id="accountInform" class="informDiv">
                 <div id="header">
-                    <img src="../CSS/ABC Bank Logo.png">
+                    <img src="../static/images/ABC Bank Logo.png">
                     <label id="label">Thông tin tài khoản</label>
                 </div>
                 <div id="informs">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div id="hotline">
-                    <img src="../CSS/Logos/Hotline Logo.png">
+                    <img src="../static/images/Hotline Logo.png">
                 </div>
             </div>
 
@@ -118,11 +118,11 @@
 <!-- =====================================Login form================================================ -->
 
         <div id ="loginForm" style="display: none;" class="modal">
-            <link rel="stylesheet" href="../Login/CSS/loginSubsite.css"/>
+            <link rel="stylesheet" href="../static/loginWindow/loginSubsite.css"/>
             <form class="modal-content animate" action="../Login/submit.py" method="post">
                 <div class="imgcontainer">
                     <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <img src="../CSS/ABC Bank Logo.png" alt="Avatar" class="avatar">
+                    <img src="../static/images/ABC Bank Logo.png" alt="Avatar" class="avatar">
                 </div>
             
                 <div class="container">
@@ -156,6 +156,6 @@
 <!-- =======================================Go to top btn============================================== -->
 
         <button onclick="topFunction()" id="goTopBtn" title="Go to top">Top</button>
-        <script src="../script/onScroll.js"></script>
+        <script src="../static/script/onScroll.js"></script>
     </body>
 </html>
