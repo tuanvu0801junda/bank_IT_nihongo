@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2> You've successfully registered an account, with: </h2>
+<h2> Account owner: {{ fullname }}</h2>
+<h2> Phone number : {{ phone_number }}</h2>
+<h2> Account id : {{ account_id }}</h2>
+
+<button type = "button" onclick="location.href = '{{ url_for('show_main_page') }}' ">
+    Back to main page
+</button>
+
+</body>
+</html>

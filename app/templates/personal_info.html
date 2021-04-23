@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Register</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.fullname.label }}<br>
+            {{ form.fullname(size=32) }}<br>
+        </p>
+        
+        <p>
+            {{ form.address.label }}<br>
+            {{ form.address(size=32) }}<br>
+        </p>
+
+        <p>
+            {{ form.phone_number.label }}<br>
+            {{ form.phone_number(size=32) }}<br>
+        </p>
+
+
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,148 @@
+#divBody{
+    height: 2000px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/*==================================================================*/
+
+.informDiv {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #e6eeff;
+    font-weight: bold;
+    border: inset #b3cbff 3px;
+    margin: 0;
+    z-index: 2;
+}
+
+#divBody #accountInform {
+    width: 367px;
+    height: 430px;
+    position: relative;
+    left: 0;
+    top: 0;
+    float: left;
+}
+
+#divBody #exchangeRate {
+    width: 370px;
+    height: 570px;
+    position: relative;
+    right: 0;
+    top: 0;
+    border-style: outset;
+    float: right;
+}
+
+/*==================================================================*/
+
+#accountInform #header {
+    text-align: center;
+    font-size: 27px;
+    color: #990000;
+    width: 100%;
+    height: 110px;
+    text-decoration: underline #b3c6ff;
+}
+
+#accountInform #header img {
+    height: 50%;
+    float: left;
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+#accountInform #header #label {
+    position: relative;
+    top: 35px;
+}
+
+/*==================================================================*/
+
+#accountInform #informs {
+    height: 210px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+#accountInform #informs > div {
+    display: block;
+    width: 100%;
+    height: 68px;
+    margin: 0;
+    padding: 0;
+    border-top: 1px outset #6696ff;
+}
+
+#accountInform #informs .informLabel {
+    padding-top: 5px;
+    margin-left: 20px;
+    text-align: left;
+    font-size: 22px;
+    color: #990000;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 347px;
+    height: 30px;
+}
+
+#accountInform #informs .informValue {
+    padding-bottom: 8px;
+    padding-left: 10px;
+    margin-left: 20px;
+    text-align: left;
+    font-size: 22px;
+    color: #000099;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 347px;
+    height: 27px;
+}
+
+/*==================================================================*/
+
+#hotline {
+    width: 367px;
+    height: 110px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    padding-left: 50px;
+}
+
+#hotline img {
+    height: 100%;
+    float: left;
+}
+
+/*==================================================================*/
+
+#centerPageContain {
+    z-index: 1;
+    position: relative;
+    width: 60%;
+    height: 2000px;
+    left: 377px;
+    background-color: #000099;
+    padding: 5px;
+    border: inset 3px #b3cbff;
+}
+
+#centerPageContain #ads {
+    background-color: #990000;
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 650px;
+}
+

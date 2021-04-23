@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+    <meta charset="UTF-8">
+    <head >
+        <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+        <link rel="stylesheet" href="../static/bodyWeb/divBody.css"/>
+        <link rel="stylesheet" href="../static/bodyWeb/bodyWeb.css"/>
+        <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
+        <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
+        <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
+        <!--<script src="jquery.js"></script> -->
+    </head>
+    <body>
+<!-- =====================================Website Header================================================ -->
+
+        <div id="topDiv">
+            <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
+            <img src="../static/images/Aidoru Bank Logo update.png" usemap="#bankLabel">
+            <map name="bankLabel">
+                <area shape="rect" coords="0, 0, 739, 607" href="localhost:5000">
+            </map>
+
+            <nav style="align-items: center;">
+                <ul class="bankInform">
+                    <label>Aidoru Bank</label>
+                    <li id="divLabels">
+                        <label for="link_fb">Facebook :</label>
+                        <label for="link_email">Email :</label>
+                    </li>
+                    <li id="divLinks">
+                        <a href="https://www.facebook.com/tuandatvuosc0801" id="link_fb">Vũ Tuấn Đạt-tộ</a>
+                        <a href="https://mail.google.com" id="link_email">quan.td184178@sis.hust.edu.vn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+<!-- ========================================Menu bar============================================= -->
+
+        <div id="menuBar">
+            <ul class="menuContain">
+                <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
+                <li id="loginBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">
+                    <a  href="#" id="loginHref">Đăng nhập</a>
+                </li>
+
+                <li id="news-eventBtn">
+                    <a href="" id="newsHref">Tin tức, sự kiện</a>
+                </li>
+
+                <nav id="navDropdownMenu">
+                    <li id="dropDown" style="display: inline-block; width: 220px; border-right: 3px inset rgba(133, 122, 122, 0.418);"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
+                        <ul>
+                            <li><a href="#">Chuyển tiền</a></li>
+                            <li><a href="#">Vay tiết kiệm</a></li>
+                            <li><a href="#">Khoá thẻ</a></li>
+                        </ul>
+                    </li>
+                </nav>
+
+                <link rel="stylesheet" href="../static/topMenu/searchBar.css"/>
+                <div id="searchBar">
+                    <input type="text" placeholder="Search.." id="searchBox">
+                </div>
+            </ul>
+        </div>
+
+<!-- ======================================Body=============================================== -->
+
+        <div id="divBody">
+            <div id="accountInform" class="informDiv">
+                <div id="header">
+                    <img src="../static/images/ABC Bank Logo.png">
+                    <label id="label">Thông tin tài khoản</label>
+                </div>
+                <div id="informs">
+                    <div id="cardNumber" style="background-color: #ccdcff;">
+                        <div class="informLabel">
+                            <p>Số thẻ :</p>
+                        </div>
+                        <div class="informValue">
+                            <p>12345</p>
+                        </div>
+                    </div>
+                    <div id="name">
+                        <div class="informLabel">
+                            <p>Chủ tài khoản :</p>
+                        </div>
+                        <div class="informValue">
+                            <p>Tran Duc Quan</p>
+                        </div>
+                    </div>
+                    <div id="ballance" style="background-color: #ccdcff; border-bottom: 1px inset #6696ff;">
+                        <div class="informLabel">
+                            <p>Số dư tài khoản :</p>
+                        </div>
+                        <div class="informValue">
+                            <p>9999999999 VND</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="hotline">
+                    <img src="../static/images/Hotline Logo.png">
+                </div>
+            </div>
+
+            <div id="exchangeRate" class="informDiv">
+            </div>
+
+            <div id="centerPageContain">
+                <div id="ads">
+                    
+                </div>
+            </div>
+        </div>
+
+<!-- =====================================Login form================================================ -->
+
+        <div id ="loginForm" style="display: none;" class="modal">
+            <link rel="stylesheet" href="../static/loginWindow/loginSubsite.css"/>
+            <form class="modal-content animate" action="../route.py" method="post">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <img src="../static/images/ABC Bank Logo.png" alt="Avatar" class="avatar">
+                </div>
+            
+                <div class="container">
+                    <label for="username"><b>Tài khoản</b></label>
+                    <input type="text" placeholder="Tên tài khoản" name="username" required>
+            
+                    <label for="password"><b>Mật khẩu</b></label>
+                    <input type="password" placeholder="Mật khẩu" name="login_pass" required>
+                    
+                    <button type="submit">Đăng nhập</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Ghi nhớ tài khoản
+                    </label>
+                </div>
+            
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
+                    <span class="psw">Quên <a href="#" id="forgotPass">mật khẩu?</a></span>
+                </div>
+            </form>
+        </div>
+        <script>
+            var modal = document.getElementById('loginForm');
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+<!-- =======================================Go to top btn============================================== -->
+
+        <button onclick="topFunction()" id="goTopBtn" title="Go to top">Top</button>
+        <script src="../static/script/onScroll.js"></script>
+    </body>
+</html>

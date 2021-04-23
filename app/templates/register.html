@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Register</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.balance.label }}<br>
+            {{ form.balance(size=32) }}<br>
+        </p>
+        
+        <p>
+            {{ form.role.label }}<br>
+            {{ form.role(size=2) }}<br>
+        </p>
+
+        <p>
+            {{ form.login_name.label }}<br>
+            {{ form.login_name(size=32) }}<br>
+        </p>
+
+        <p>
+            {{ form.register_pass.label }}<br>
+            {{ form.register_pass(size=32) }}<br>
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>
