@@ -1,11 +1,12 @@
 from flask import render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 
 from app import app
 """ import app == import "app" in __init__.py """
 from app.db import conn
 from app.query import show_account
-from app.form import LoginForm, RegisterAccountForm, RegisterPersonalInfoForm
+from app.form import LoginForm, RegisterAccountForm, RegisterPersonalInfoForm, SendMoneyForm
 
 role = -1
 account_id = -1
@@ -32,6 +33,7 @@ def login():
 
         if len(record) == 0 or not check_password_hash(record[0], login_form.login_pass.data):
             flash('Invalid username of password! ')
+            print("here 1")
             return redirect(url_for('login'))
         else:
             cur.execute("select * from account where account_id = "+str(record[1]))
@@ -40,6 +42,7 @@ def login():
             if not rows[2]:
                 """ <==> if rows[2] == false"""
                 flash('Your account is being LOCKED !')
+                print("here 2")
                 return redirect(url_for('login'))
             else:
                 account_id = record[1]
@@ -121,7 +124,7 @@ def register():
 def personal_info():
     psn_in4_form = RegisterPersonalInfoForm()
     if psn_in4_form.is_submitted():
-        global created_id
+        global fullname
         fullname = psn_in4_form.fullname.data
         address = psn_in4_form.address.data
         phone_number = psn_in4_form.phone_number.data
@@ -132,3 +135,52 @@ def personal_info():
         conn.commit()
         return render_template('successful.html', fullname=fullname, phone_number=phone_number, account_id=created_id)
     return render_template('personal_info.html', form=psn_in4_form)
+
+
+@app.route('/send_money', methods=['GET', 'POST'])
+def send_money():
+    send_money_form = SendMoneyForm()
+    if send_money_form.is_submitted():
+        global receiver_id, money_amt
+        money_amt = send_money_form.money_amt.data
+        receiver_id = send_money_form.receiver_account.data
+        message = send_money_form.message.data
+
+        cur = conn.cursor()
+        cur.execute("select balance from account natural join systemUser where account_id = "+str(account_id))
+        balance_check = cur.fetchone()[0]
+
+        if balance_check < money_amt:
+            flash("Money amount which will be sent is more than BALANCE!")
+            return redirect(url_for('send_money'))
+        else:
+            cur.execute("select fullname from systemUser where account_id = "+str(receiver_id))
+            receiver_name = cur.fetchone()[0]
+            if len(receiver_name) == 0:
+                flash("Receiver's name doesn't exist.")
+                return redirect(url_for('send_money'))
+            else:
+                cur.execute("select fullname from systemUser where account_id = "+str(account_id))
+                fullname = cur.fetchone()[0]
+                return render_template('send_confirm.html', receiver_id=receiver_id, receiver_name=receiver_name,
+                                       money_amt=money_amt, fullname=fullname, sender_id=account_id, message=message)
+    return render_template('send_money.html', form=send_money_form)
+
+
+@app.route('/send_money/confirm', methods=['GET', 'POST'])
+def confirm_send_money():
+    cur = conn.cursor()
+    cur.execute("update account set balance = balance + "+str(money_amt)
+                + " where account_id = "+str(receiver_id))
+    conn.commit()
+
+    cur.execute("update account set balance = balance - "+str(money_amt)
+                + " where account_id = "+str(account_id))
+    conn.commit()
+
+    moment = datetime.datetime.now()
+    cur.execute("insert into transaction(money_amt,sender_id,receiver_id,tran_date)"
+                "values("+str(money_amt)+","+str(account_id)+","+str(receiver_id)+
+                ",\'"+moment.strftime('%Y-%m-%d %X')+"\')")
+    conn.commit()
+    return render_template('sent_successful.html')

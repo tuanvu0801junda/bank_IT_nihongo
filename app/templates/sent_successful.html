@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sent Successfull</title>
+</head>
+<body>
+<h2> Information: Sent successfully! </h2>
+
+<button type = "button" onclick="location.href = '{{ url_for('send_money') }}' ">
+    Continue to transact
+</button>
+
+<button type = "button" onclick="location.href = '{{ url_for('show_main_page') }}' ">
+    Back to main page
+</button>
+</body>
+</html>
