@@ -8,6 +8,7 @@ from app.db import conn
 from app.query import show_account
 from app.form import LoginForm, RegisterAccountForm, RegisterPersonalInfoForm, SendMoneyForm
 
+
 role = -1
 account_id = -1
 """ init global values """
@@ -17,44 +18,40 @@ account_id = -1
 def show_main_page():
     return render_template('index.html')
 
-
+  
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     global role, account_id
-    login_form = LoginForm()
 
-    if login_form.is_submitted():
-        username = request.form.get('username')
-        cur = conn.cursor()
-        cur.execute("select password_hash, account_id from loginInfo where "
-                    "login_name = "+"\'"+username+"\';")
-        record = cur.fetchone()
-        """ record = [password_hash, acc_login]"""
+    username = request.form.get('username')
+    password = request.form.get('login_pass')
+    cur = conn.cursor()
+    cur.execute("select password_hash, account_id from loginInfo where "
+        "login_name = "+"\'"+username+"\';")
+    record = cur.fetchone()
+    """ record = [password_hash, acc_login]"""
 
-        if len(record) == 0 or not check_password_hash(record[0], login_form.login_pass.data):
-            flash('Invalid username of password! ')
-            print("here 1")
-            return redirect(url_for('login'))
+    if not check_password_hash(record[0], password):
+        flash('Invalid username of password! ')
+        return redirect(url_for('show_main_page'))
+    else:
+        cur.execute("select * from account where account_id = "+str(record[1]))
+        rows = cur.fetchone()
+        """ rows = [account_id, balance, acc_status, role] """
+        if not rows[2]:
+            """ <==> if rows[2] == false"""
+            flash('Your account is being LOCKED !')
+            return redirect(url_for('show_main_page'))
         else:
-            cur.execute("select * from account where account_id = "+str(record[1]))
-            rows = cur.fetchone()
-            """ rows = [account_id, balance, acc_status, role] """
-            if not rows[2]:
-                """ <==> if rows[2] == false"""
-                flash('Your account is being LOCKED !')
-                print("here 2")
-                return redirect(url_for('login'))
+            account_id = record[1]
+            if rows[3] == 0:
+                """ customer """
+                role = 0
+                return redirect(url_for('show_user_info'))
             else:
-                account_id = record[1]
-                if rows[3] == 0:
-                    """ customer """
-                    role = 0
-                    return redirect(url_for('show_user_info'))
-                else:
-                    """ bank clerk """
-                    role = 1
-                    return redirect(url_for('show_user_info'))
-    return render_template('login.html', title='Login', form=login_form)
+                """ bank clerk """
+                role = 1
+                return redirect(url_for('show_user_info'))
 
 
 @app.route("/account/find", methods=['GET', 'POST'])

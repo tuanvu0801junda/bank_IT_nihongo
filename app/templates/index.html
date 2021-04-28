@@ -9,27 +9,31 @@
         <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
         <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
         <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
+
+        <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
         <!--<script src="jquery.js"></script> -->
+        <script src="../static/topMenu/script/loginButton.js"></script>
     </head>
     <body>
 <!-- =====================================Website Header================================================ -->
 
         <div id="topDiv">
-            <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
-            <img src="../static/images/Aidoru Bank Logo update.png" usemap="#bankLabel">
+
+            <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
             <map name="bankLabel">
-                <area shape="rect" coords="0, 0, 739, 607" href="localhost:5000">
+                <area shape="rect" coords="0, 0, 380, 380" href="localhost:5000">
+
             </map>
 
             <nav style="align-items: center;">
                 <ul class="bankInform">
-                    <label>Aidoru Bank</label>
+                    <label>QuaDa Bank</label>
                     <li id="divLabels">
-                        <label for="link_fb">Facebook :</label>
-                        <label for="link_email">Email :</label>
+                        <div id="facebook_icon"></div>
+                        <div id="email_icon"></div>
                     </li>
                     <li id="divLinks">
-                        <a href="https://www.facebook.com/tuandatvuosc0801" id="link_fb">Vũ Tuấn Đạt-tộ</a>
+                        <a href="https://www.facebook.com/quantd239/" id="link_fb">QuaDa Bank</a>
                         <a href="https://mail.google.com" id="link_email">quan.td184178@sis.hust.edu.vn</a>
                     </li>
                 </ul>
@@ -50,11 +54,11 @@
                 </li>
 
                 <nav id="navDropdownMenu">
-                    <li id="dropDown" style="display: inline-block; width: 220px; border-right: 3px inset rgba(133, 122, 122, 0.418);"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
+                    <li id="dropDown" style="display: inline-block; width: 220px;"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
                         <ul>
                             <li><a href="#">Chuyển tiền</a></li>
                             <li><a href="#">Vay tiết kiệm</a></li>
-                            <li><a href="#">Khoá thẻ</a></li>
+                            <li><a href="#" style="height: 40px !important;">Khoá thẻ</a></li>
                         </ul>
                     </li>
                 </nav>
@@ -119,7 +123,7 @@
 
         <div id ="loginForm" style="display: none;" class="modal">
             <link rel="stylesheet" href="../static/loginWindow/loginSubsite.css"/>
-            <form class="modal-content animate" action="../route.py" method="post">
+            <form class="modal-content animate" action="/login" method="POST">
                 <div class="imgcontainer">
                     <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <img src="../static/images/ABC Bank Logo.png" alt="Avatar" class="avatar">

@@ -23,14 +23,13 @@
 
 .menuContain>li {
     border: none;
-    border-left: 3px inset rgba(133, 122, 122, 0.418);
     list-style: none;
-    height: 100%;
+    height: 46px;
     position: relative;
+    top: 0;
     margin: 0;
     padding: 0;
     float: left;
-}
 
 .menuContain>nav {
     float: left;
@@ -41,10 +40,11 @@
 }
 
 .menuContain>li:hover {
-    background-color: #6666ff;
+    border-bottom: 2px white solid;
 }
+
 .menuContain>.blankSpace:hover {
-    background-color: #0099ff;
+    border: none !important;
 }
 
 a {

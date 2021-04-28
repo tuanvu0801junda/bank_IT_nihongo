@@ -42,7 +42,7 @@
 }
 
 #navDropdownMenu li:hover a {
-	background: #6666ff;
+	background: #000066;
 }
 
 #navDropdownMenu li ul {
@@ -68,18 +68,17 @@
 }
 
 #navDropdownMenu li ul li {
-	float: none;
+	border-right: 3px #000066 solid;
 	width: 100%;
 }
 
-#navDropdownMenu li ul a:hover {
-	background-color: #0099ff;
+#navDropdownMenu li ul li:hover {
+	border-right: 3px #ccffff solid;
 }
 
 #dropDown {
     width: 170px;
     border: none;
-    border-left: 3px inset rgba(133, 122, 122, 0.418);
     list-style: none;
     height: 50px;
     position: relative;
