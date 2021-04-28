@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Send Money</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.money_amt.label }}<br>
+            {{ form.money_amt(size=32) }}<br>
+        </p>
+
+        <p>
+            {{ form.receiver_account.label }}<br>
+            {{ form.receiver_account(size=32) }}<br>
+        </p>
+
+        <p>
+            {{ form.message.label }}<br>
+            {{ form.message(size=32) }}<br>
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

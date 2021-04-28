@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- receiver_id, receiver_name, money_amt, fullname, sender_id=created_id)-->
+<h2> Confirmation before sending </h2>
+<h4> Sender Name: {{ fullname }}</h4>
+<h4> Sender Account ID: {{ sender_id }}</h4>
+<h4> Money Amount: {{ money_amt }}</h4>
+<h4> ***************************************</h4>
+<h4> Message: {{ message }}</h4>
+<h4> ***************************************</h4>
+<h4> Receiver Name: {{ receiver_name}}</h4>
+<h4> Receiver Account ID: {{ receiver_id }}</h4>
+</body>
+
+<button type = "button" onclick="location.href = '{{ url_for('confirm_send_money') }}' ">
+    I confirmed my transaction
+</button>
+</html>

@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash
 
 conn = psycopg2.connect(host="localhost", port="5432", database="ITJPBank",
         user="postgres", password="lboEDG82")
+        
 
 cur = conn.cursor()
 

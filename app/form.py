@@ -31,3 +31,13 @@ class LoginForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
     login_pass = PasswordField('login_pass', validators=[DataRequired()])
     submit = SubmitField('Confirm Login ?')
+
+
+class SendMoneyForm(FlaskForm):
+    money_amt = IntegerField('money_amt', validators=[DataRequired()])
+    receiver_account = IntegerField('receiver_id', validators=[DataRequired()])
+    message = StringField('message')
+    submit = SubmitField('Submit')
+
+
+
