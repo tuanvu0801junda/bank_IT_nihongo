@@ -41,7 +41,7 @@
 }
 
 .menuContain>li:hover {
-    border-bottom: 2px #8080ff solid;
+    border-bottom: 2px white solid;
 }
 
 .menuContain>.blankSpace:hover {

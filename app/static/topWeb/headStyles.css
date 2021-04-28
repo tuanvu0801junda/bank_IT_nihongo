@@ -2,7 +2,10 @@
     width: auto;
     height: 150px;
     clear: both;
-    background-color: #99ddff;
+    background-image: url("../images/topWebBG.jpg");
+    background-size: 100% 300%;
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 #topDiv>img {
@@ -59,10 +62,11 @@
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     text-decoration: none;
+    color: aqua;
 }
 
 .bankInform>label {
-    color: #b32400;
+    color: #ff5c33;
     display: block;
     text-align: center;
     font-size: 30px;
@@ -77,14 +81,18 @@
     filter: blur(.5px);
 }
 
-label[for="link_fb"] {
-    filter: blur(.4px);
-    color: #3333ff;
+.bankInform #facebook_icon {
+    background-image: url("../images/logo_fb-removebg.png");
+    background-size: 40px 40px;
+    background-position: right top;
+    background-repeat: no-repeat;
 }
 
-label[for="link_email"] {
-    filter: blur(.4px);
-    color: #b32400;
+.bankInform #email_icon {
+    background-image: url("../images/MailLogo.png");
+    background-size: 40px 40px;
+    background-position: right bottom;
+    background-repeat: no-repeat;
 }
 
 /*========================================================================================*/
@@ -105,7 +113,7 @@ nav #divLabels {
     text-align: right;
 }
 
-nav #divLabels label {
+nav #divLabels div {
     display: block;
     width: 200px;
     height: 45px;
@@ -132,5 +140,6 @@ nav #divLinks a {
     display: block;
     text-align: left;
     width: 400px;
-    height: 45px;
+    height: 35px;
+    padding-top: 10px;
 }

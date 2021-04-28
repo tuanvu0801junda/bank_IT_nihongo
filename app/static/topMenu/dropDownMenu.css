@@ -42,7 +42,7 @@
 }
 
 #navDropdownMenu li:hover a {
-	background: #80d4ff;
+	background: #000066;
 }
 
 #navDropdownMenu li ul {
@@ -68,12 +68,12 @@
 }
 
 #navDropdownMenu li ul li {
-	border-right: 3px #80d4ff solid;
+	border-right: 3px #000066 solid;
 	width: 100%;
 }
 
 #navDropdownMenu li ul li:hover {
-	border-right: 3px red solid;
+	border-right: 3px #ccffff solid;
 }
 
 #dropDown {

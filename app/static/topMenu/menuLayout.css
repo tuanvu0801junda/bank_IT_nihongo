@@ -4,6 +4,10 @@
     left: 0;
     height: 50px;
     width: 100%;
-    background-color: #80d4ff;
+    background-color: #000066;
     z-index: 10;
+}
+
+#menuBar a {
+    color: #ccffff;
 }
