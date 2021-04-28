@@ -1,0 +1,9 @@
+#menuBar {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #80d4ff;
+    z-index: 10;
+}
