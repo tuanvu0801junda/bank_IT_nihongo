@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2> Hello, {{ ctm_name }}</h2>
+<h2> Your account ID: {{ account_id }}</h2>
+<h2> If you confirm to lock, you will need BANK CLERK's HELP to UNLOCK</h2>
+<button class="button" onclick="location.href = '{{ url_for('lock_confirm') }}'">
+    Confirm to lock
+</button>
+</body>
+</html>

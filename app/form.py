@@ -27,12 +27,6 @@ class RegisterPersonalInfoForm(FlaskForm):
     submit = SubmitField('I confirmed my personal information !')
 
 
-class LoginForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
-    login_pass = PasswordField('login_pass', validators=[DataRequired()])
-    submit = SubmitField('Confirm Login ?')
-
-
 class SendMoneyForm(FlaskForm):
     money_amt = IntegerField('money_amt', validators=[DataRequired()])
     receiver_account = IntegerField('receiver_id', validators=[DataRequired()])
@@ -40,4 +34,14 @@ class SendMoneyForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
+class ClerkLockAccountForm(FlaskForm):
+    acc_lock = IntegerField('acc_lock', validators=[DataRequired()])
+    reason_lock = StringField('reason_lock')
+    submit = SubmitField('Confirm to LOCK')
+
+
+class ClerkUnLockAccountForm(FlaskForm):
+    acc_unlock = IntegerField('acc_unlock', validators=[DataRequired()])
+    reason_unlock = StringField('reason_unlock')
+    submit = SubmitField('Confirm to UNLOCK')
 
