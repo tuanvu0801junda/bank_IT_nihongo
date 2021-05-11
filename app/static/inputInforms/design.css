@@ -1,0 +1,81 @@
+.pageLabel, .registerLabel {
+    text-align: center;
+    color: #4d4dff;
+    text-shadow: 5px 5px 10px #4d4dff;
+    font-size: 50px;
+}
+
+#centerPageContain {
+    z-index: 1;
+    position: relative;
+    width: 50%;
+    height: fit-content;
+    left: 25%;
+    background-color: #b3ecff;
+    padding: 5px;
+    border: inset 3px #b3cbff;
+}
+
+form label[for="roles"] {
+    margin-right: 20px !important;
+}
+
+#centerPageContain .property-contain {
+    padding: 15px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+form label {
+    font-size: 23px;
+    padding-left: 18px;
+    text-shadow: 2px 2px 5px #4d4dff;
+}
+
+form input[type="text"], form input[type="password"] {
+    margin: 5px;
+    padding-left: 15px;
+    border: 1px inset gray;
+    border-radius: 5px;
+    text-align: left;
+    width: 480px;
+    height: 38px;
+    font-size: 17px;
+}
+
+#submitBtn, .redirectBtn {
+    border: 1px inset transparent;
+    border-radius: 5px;
+    text-align: center;
+    width: 110px;
+    height: 50px;
+    font-size: 25px;
+    color: white;
+    background-color: DodgerBlue;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 40px;
+}
+
+.redirectBtn {
+    width: fit-content;
+}
+
+#submitBtn:hover {
+    background-color: #4d4dff;
+}
+
+/* -------------------------------------------- */
+
+.successefull-inform, .confirm-inform {
+    font-size: 23px;
+    padding-left: 18px;
+    text-shadow: 2px 2px 5px #4d4dff;
+}
+
+.left-half-inform {
+    text-align: right;
+}
+
+.right-half-inform {
+    text-align: left;
+}

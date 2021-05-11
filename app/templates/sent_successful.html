@@ -1,11 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+
+<html>
     <meta charset="UTF-8">
-    <title>Sent Successfull</title>
-</head>
-<body>
-<h2> Information: Sent successfully! </h2>
+    <head >
+        <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+        <link rel="stylesheet" href="../static/bodyWeb/bodyWeb.css"/>
+        <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
+        <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
+        <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
+
+        <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
+        <link rel="stylesheet" href="../static/inputInforms/design.css"/>
+        <!--<script src="jquery.js"></script> -->
+    </head>
+    <body>
+<!-- =====================================Website Header================================================ -->
+
+        <div id="topDiv">
+
+            <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
+            <map name="bankLabel">
+                <area shape="rect" coords="0, 0, 380, 380" href="http://127.0.0.1:5000/account">
+            </map>
+
+            <nav style="align-items: center;">
+                <ul class="bankInform">
+                    <label>QuaDa Bank</label>
+                    <li id="divLabels">
+                        <div id="facebook_icon"></div>
+                        <div id="email_icon"></div>
+                    </li>
+                    <li id="divLinks">
+                        <a href="https://www.facebook.com/quantd239/" id="link_fb">QuaDa Bank</a>
+                        <a href="https://mail.google.com" id="link_email">quan.td184178@sis.hust.edu.vn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+<!-- ========================================Menu bar============================================= -->
+
+        <div id="menuBar">
+            <ul class="menuContain">
+                <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
+                <li id="logBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">
+                    <a  href="#" id="logHref">Đăng xuất</a>
+                </li>
+                <!-- <script src="../static/topMenu/script/loginButton.js"></script> -->
+
+                <li id="news-eventBtn">
+                    <a href="" id="newsHref">Tin tức, sự kiện</a>
+                </li>
+
+                <nav id="navDropdownMenu">
+                    <li id="dropDown" style="display: inline-block; width: 220px;"><a class="dropdownMenu" href="#">Chức năng</a>
+                        <ul>
+                            <li><a href="#">Chuyển tiền</a></li>
+                            <li><a href="#">Vay tiết kiệm</a></li>
+                            <li><a href="#" style="height: 40px !important;">Khoá thẻ</a></li>
+                        </ul>
+                    </li>
+                </nav>
+
+                <link rel="stylesheet" href="../static/topMenu/searchBar.css"/>
+                <div id="searchBar">
+                    <input type="text" placeholder="Search.." id="searchBox">
+                </div>
+            </ul>
+        </div>
+
+<!-- ======================================Body=============================================== -->
+
+        <div id="divBody">
+            <div id="centerPageContain" style="height: 250px !important;">
+                <h1 class="pageLabel">Gửi tiền thành công !</h1>
+
+                <div class="property-contain" style="position: relative; top: 20px">
+                    <input type="button" value="Giao dịch tiếp" id="ctn_transact" class="redirectBtn" style="margin-right: 60px;">
+                    <input type="button" value="Về trang chủ" id="bckTo_mainpg" class="redirectBtn">
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("ctn_transact").onclick = function() {
+                window.location.href = "{{ url_for('send_money') }}";
+            }
+            document.getElementById("bckTo_mainpg").onclick = function() {
+                window.location.href = "{{ url_for('show_user_info') }}";
+            }
+        </script>
+    </body>
+</html>
+<!-- <h2> Information: Sent successfully! </h2>
 
 <button type = "button" onclick="location.href = '{{ url_for('send_money') }}' ">
     Continue to transact
@@ -13,6 +100,4 @@
 
 <button type = "button" onclick="location.href = '{{ url_for('show_main_page') }}' ">
     Back to main page
-</button>
-</body>
-</html>
+</button> -->

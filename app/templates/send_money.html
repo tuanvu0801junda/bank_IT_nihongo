@@ -1,30 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+
+<html>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <head >
+        <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+        <link rel="stylesheet" href="../static/bodyWeb/bodyWeb.css"/>
+        <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
+        <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
+        <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
 
-<h1>Send Money</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.money_amt.label }}<br>
-            {{ form.money_amt(size=32) }}<br>
-        </p>
+        <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
+        <link rel="stylesheet" href="../static/inputInforms/design.css"/>
+        <link rel="stylesheet" href="../static/menu/selectMenu/selectMenu.css"/>
+        <!--<script src="jquery.js"></script> -->
+    </head>
+    <body>
+<!-- =====================================Website Header================================================ -->
 
-        <p>
-            {{ form.receiver_account.label }}<br>
-            {{ form.receiver_account(size=32) }}<br>
-        </p>
+        <div id="topDiv">
 
-        <p>
-            {{ form.message.label }}<br>
-            {{ form.message(size=32) }}<br>
-        </p>
+            <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
+            <map name="bankLabel">
+                <area shape="rect" coords="0, 0, 380, 380" href="http://127.0.0.1:5000/account">
+            </map>
 
-        <p>{{ form.submit() }}</p>
-    </form>
+            <nav style="align-items: center;">
+                <ul class="bankInform">
+                    <label>QuaDa Bank</label>
+                    <li id="divLabels">
+                        <div id="facebook_icon"></div>
+                        <div id="email_icon"></div>
+                    </li>
+                    <li id="divLinks">
+                        <a href="https://www.facebook.com/quantd239/" id="link_fb">QuaDa Bank</a>
+                        <a href="https://mail.google.com" id="link_email">quan.td184178@sis.hust.edu.vn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+<!-- ========================================Menu bar============================================= -->
+
+        <div id="menuBar">
+            <ul class="menuContain">
+                <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
+                <li id="logBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">
+                    <a  href="#" id="logHref">Đăng xuất</a>
+                </li>
+
+                <li id="news-eventBtn">
+                    <a href="" id="newsHref">Tin tức, sự kiện</a>
+                </li>
+
+                <nav id="navDropdownMenu">
+                    <li id="dropDown" style="display: inline-block; width: 220px;"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
+                        <ul>
+                            <li><a href="#">Chuyển tiền</a></li>
+                            <li><a href="#">Vay tiết kiệm</a></li>
+                            <li><a href="#" style="height: 40px !important;">Khoá thẻ</a></li>
+                        </ul>
+                    </li>
+                </nav>
+
+                <link rel="stylesheet" href="../static/topMenu/searchBar.css"/>
+                <div id="searchBar">
+                    <input type="text" placeholder="Search.." id="searchBox">
+                </div>
+            </ul>
+        </div>
+
+<!-- ======================================Body=============================================== -->
+
+        <div id="divBody">
+            <div id="centerPageContain">
+                <h1 class="registerLabel">Chuyển tiền</h1>
+                <form action="" method="post">
+                    <div class="property-contain">
+                        <label for="money_amt">Số tiền:</label><br>
+                        <input type="text" id="input-money_amt" name="money_amt" placeholder="Đơn vị: VND"><br>
+                    </div>
+
+                    <div class="property-contain">
+                        <label for="receiver_account">STK Người nhận:</label><br>
+                        <input type="text" id="input-receiver_account" name="receiver_account" placeholder="VD: 12345"><br>
+                    </div>
+                    
+                    <div class="property-contain">
+                        <label for="message">Nội dung:</label><br>
+                        <input type="text" id="input-message" name="message" placeholder="Nội dung chuyển tiền"><br><br>
+                    </div>
+
+                    <div class="property-contain">
+                        <input type="submit" value="Submit" id="submitBtn">
+                    </div>
+                </form>
+            </div>
+        </div>
 </body>
 </html>

@@ -1,10 +1,12 @@
 var logStatus = '{{logStatus}}';
 
+//0 : Da dang nhap, 1 : Chua dang nhap
+
 if (logStatus == 0) {
-    var logBtn = document.getElementById("loginBtn");
-    logBtn.id = "logoutBtn";
+    var logBtn = document.getElementById("logBtn");
+    logBtn.style.visibility = "visible";
 }
 else {
-    var logBtn = document.getElementById("logoutBtn");
-    logBtn.id = "loginBtn";
+    var logBtn = document.getElementById("logBtn");
+    logBtn.style.visibility = "hidden";
 }

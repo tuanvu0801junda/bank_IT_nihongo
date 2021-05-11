@@ -16,7 +16,7 @@ account_id = -1
 
 @app.route('/')
 def show_main_page():
-    return render_template('index.html')
+    return render_template('index.html', logStatus = 1)
 
   
 @app.route('/login', methods=['GET', 'POST'])
@@ -54,7 +54,7 @@ def login():
                 return redirect(url_for('show_user_info'))
 
 
-@app.route("/account/find", methods=['GET', 'POST'])
+@app.route("/account", methods=['GET', 'POST'])
 def show_user_info():
     global role, account_id
     cur = conn.cursor()
@@ -64,14 +64,18 @@ def show_user_info():
 
     if role == 1:
         rows = show_account()
-        role_name = "Bank clerk"
+        # role_name = "Bank clerk"
+        return render_template('manager.html', logStatus = 0, card_holder=info[0], card_number=account_id, balance='-------')
     elif role == 0:
         rows = show_account(account_id)
-        role_name = "Customer"
+        # role_name = "Customer" (ctm)
+        cur.execute("select balance from account where account_id = "+str(account_id))
+        balance_ctm = cur.fetchone()[0]
+        return render_template('index.html', logStatus = 0, card_holder=info[0], card_number=account_id, balance=balance_ctm)
 
     account = [{"account_id": r[0], "balance": r[1],
                 "account_status": r[2], "role": r[3]} for r in rows]
-    return render_template('show_user_info.html', account=account, username=info[0], phone=info[1], role_name=role_name)
+    return render_template('index.html', logStatus = 1)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -85,7 +89,7 @@ def register():
         """ this is a bank clerk """
         rgt_acc_form = RegisterAccountForm()
         cur = conn.cursor()
-        login_name = rgt_acc_form.login_name.data
+        login_name = request.form.get('login_name')
 
         if rgt_acc_form.is_submitted():
             cur.execute("select * from loginInfo where login_name = '"+str(login_name)+"\';")
@@ -94,10 +98,10 @@ def register():
             if len(is_exist) != 0:
                 flash('This username already existed !!! ')
             else:
-                balance = rgt_acc_form.balance.data
-                password_hash = generate_password_hash(rgt_acc_form.register_pass.data)
+                balance = request.form.get('balance')
+                password_hash = generate_password_hash(request.form.get('register_pass'))
 
-                if rgt_acc_form.role.data == "Bank Clerk":
+                if request.form.get('role') == "Bank Clerk":
                     created_role = 1
                 else:
                     created_role = 0
@@ -114,7 +118,10 @@ def register():
                             "(\'{0}\',\'{1}\',{2})".format(login_name, password_hash, created_id))
                 conn.commit()
                 return redirect(url_for('personal_info'))
-    return render_template('register.html', title='Add new account', form=rgt_acc_form)
+
+@app.route('/register_render')
+def register_render():
+    return render_template('register.html')
 
 
 @app.route('/register/personal_info', methods=['GET', 'POST'])
