@@ -3,8 +3,7 @@ from werkzeug.security import generate_password_hash
 """ install: pip3.6 install psycopg2-binary """
 """ used to connect python and postgreSQL """
 
-conn = psycopg2.connect(host="localhost", port="5432", database="ITJPBank",
-        user="postgres", password="lboEDG82")
+conn = psycopg2.connect(host="localhost", port="5432", database="ITJPBank", user="tuanvu_local", password="123456")
         
 
 cur = conn.cursor()

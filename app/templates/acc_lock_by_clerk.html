@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Account Locked By Clerk</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.acc_lock.label }}<br>
+            {{ form.acc_lock(size=32) }}<br>
+        </p>
+
+        <p>
+            {{ form.reason_lock.label }}<br>
+            {{ form.reason_lock(size=40) }}<br>
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+
+</body>
+</html>
