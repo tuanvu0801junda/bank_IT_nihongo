@@ -1,35 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+
+<html>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <head >
+        <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+        <link rel="stylesheet" href="../static/bodyWeb/bodyWeb.css"/>
+        <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
+        <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
+        <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
 
-<h1>Register</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.balance.label }}<br>
-            {{ form.balance(size=32) }}<br>
-        </p>
-        
-        <p>
-            {{ form.role.label }}<br>
-            {{ form.role(size=2) }}<br>
-        </p>
+        <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
+        <link rel="stylesheet" href="../static/inputInforms/design.css"/>
+        <link rel="stylesheet" href="../static/menu/selectMenu/selectMenu.css"/>
+        <!--<script src="jquery.js"></script> -->
+    </head>
+    <body>
+<!-- =====================================Website Header================================================ -->
 
-        <p>
-            {{ form.login_name.label }}<br>
-            {{ form.login_name(size=32) }}<br>
-        </p>
+        <div id="topDiv">
 
-        <p>
-            {{ form.register_pass.label }}<br>
-            {{ form.register_pass(size=32) }}<br>
-        </p>
+            <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
+            <map name="bankLabel">
+                <area shape="rect" coords="0, 0, 380, 380" href="http://127.0.0.1:5000/account">
+            </map>
 
-        <p>{{ form.submit() }}</p>
-    </form>
+            <nav style="align-items: center;">
+                <ul class="bankInform">
+                    <label>QuaDa Bank</label>
+                    <li id="divLabels">
+                        <div id="facebook_icon"></div>
+                        <div id="email_icon"></div>
+                    </li>
+                    <li id="divLinks">
+                        <a href="https://www.facebook.com/quantd239/" id="link_fb">QuaDa Bank</a>
+                        <a href="https://mail.google.com" id="link_email">quan.td184178@sis.hust.edu.vn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+<!-- ========================================Menu bar============================================= -->
+
+        <div id="menuBar">
+            <ul class="menuContain">
+                <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
+                <li id="logBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">
+                    <a  href="#" id="logHref">Đăng xuất</a>
+                </li>
+                <!-- <script src="../static/topMenu/script/loginButton.js"></script> -->
+
+                <li id="news-eventBtn">
+                    <a href="" id="newsHref">Tin tức, sự kiện</a>
+                </li>
+
+                <nav id="navDropdownMenu">
+                    <li id="dropDown" style="display: inline-block; width: 220px;"><a class="dropdownMenu" href="#">Chức năng</a>
+                        <ul>
+                            <li><a href="#">Chuyển tiền</a></li>
+                            <li><a href="#">Vay tiết kiệm</a></li>
+                            <li><a href="#" style="height: 40px !important;">Khoá thẻ</a></li>
+                        </ul>
+                    </li>
+                </nav>
+
+                <link rel="stylesheet" href="../static/topMenu/searchBar.css"/>
+                <div id="searchBar">
+                    <input type="text" placeholder="Search.." id="searchBox">
+                </div>
+            </ul>
+        </div>
+
+<!-- ======================================Body=============================================== -->
+
+        <div id="divBody">
+            <div id="centerPageContain">
+                <h1 class="registerLabel">Đăng ký tài khoản</h1>
+                <form action="/register" method="post">
+                    <div class="property-contain">
+                        <label for="roles">Chọn role: </label>
+                        <div class="custom-select" style="width:200px;">
+                            <select name="role" id="choice-roles">
+                                <option value="Customer">Chọn</option>             <!-- Customer by default -->
+                                <option value="Customer">Customer</option>
+                                <option value="Bank clerk">Bank clerk</option>
+                            </select>
+                        </div>
+                        <script src="../static/menu/selectMenu/selectMenu.js"></script>
+                        <br>
+                    </div>
+
+                    <div class="property-contain">
+                        <label for="balance">Số dư khởi tạo:</label><br>
+                        <input type="text" id="input-balance" name="balance" placeholder="Đơn vị: VND"><br>
+                    </div>
+
+                    <div class="property-contain">
+                        <label for="login_name">Tên đăng nhập:</label><br>
+                        <input type="text" id="input-login_name" name="login_name" placeholder="Gồm: a-z, A-Z, 0-9"><br>
+                    </div>
+                    
+                    <div class="property-contain">
+                        <label for="register_pass">Khởi tạo mật khẩu:</label><br>
+                        <input type="password" id="input-register_pass" name="register_pass" placeholder="Gồm: a-z, A-Z, 0-9"><br><br>
+                    </div>
+
+                    <div class="property-contain">
+                        <input type="submit" value="Submit" id="submitBtn">
+                    </div>
+                </form>
+            </div>
+        </div>
 </body>
 </html>

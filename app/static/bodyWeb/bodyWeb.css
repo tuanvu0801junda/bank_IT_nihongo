@@ -3,7 +3,7 @@ body {
     overflow: scroll;
     overflow-x: hidden;
     background-size: cover;
-    background-image: url("Color Edited BG.jpg");
+    background-image: url("../images/Color Edited BG.jpg");
 }
 
 body::-webkit-scrollbar{
