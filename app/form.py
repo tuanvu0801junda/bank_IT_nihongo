@@ -1,6 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField
-from wtforms import SelectField, DateField, TextField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField
 from wtforms.validators import DataRequired
 
 
@@ -8,11 +7,11 @@ class RegisterAccountForm(FlaskForm):
     # account_id = auto-generated
     balance = IntegerField('balance', validators=[DataRequired()])
     # acc_status = True (have just created --> cannot be LOCKED (False)
-    role = SelectField('role', choices=['Bank Clerk','Customer'], validators=[DataRequired()])
+    role = SelectField('role', choices=['Bank Clerk', 'Customer'], validators=[DataRequired()])
     """ table: account """
 
     login_name = StringField('login_name', validators=[DataRequired()])
-    register_pass = PasswordField('register_pass',validators=[DataRequired()])
+    register_pass = PasswordField('register_pass', validators=[DataRequired()])
     """ table: loginInfo """
     submit = SubmitField('Confirmed and move next ?')
 
@@ -44,4 +43,3 @@ class ClerkUnLockAccountForm(FlaskForm):
     acc_unlock = IntegerField('acc_unlock', validators=[DataRequired()])
     reason_unlock = StringField('reason_unlock')
     submit = SubmitField('Confirm to UNLOCK')
-
