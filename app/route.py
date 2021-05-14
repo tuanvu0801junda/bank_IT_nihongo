@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 
@@ -16,7 +16,7 @@ fullname = ""
 
 @app.route('/')
 def show_main_page():
-    return render_template('index.html', logStatus = 1)
+    return render_template('index.html', logStatus=1)
 
   
 @app.route('/login', methods=['GET', 'POST'])
@@ -30,16 +30,14 @@ def login():
     """ record = [password_hash, acc_login]"""
 
     if not check_password_hash(record[0], password):
-        flash('Invalid username of password! ')
-        return redirect(url_for('show_main_page'))
+        return render_template('warning.html', message="Invalid user name or password!")
     else:
         cur.execute("select * from account where account_id = "+str(record[1]))
         rows = cur.fetchone()
         """ rows = [account_id, balance, acc_status, role] """
         if not rows[2]:
             """ <==> if rows[2] == false"""
-            flash('Your account is being LOCKED !')
-            return redirect(url_for('show_main_page'))
+            return render_template('warning.html', message="Your account is being LOCKED !")
         else:
             account_id = record[1]
             if rows[3] == 0:
@@ -54,25 +52,30 @@ def login():
 
 @app.route("/account", methods=['GET', 'POST'])
 def show_user_info():
+    global rows
     cur = conn.cursor()
     cur.execute("select fullname, phone_number from systemUser where account_id = "+str(account_id))
     info = cur.fetchone()
     # info = [fullname, phone_number]
 
-    if role == 1:
-        rows = show_account()
-        # role_name = "Bank clerk"
-        return render_template('manager.html', logStatus = 0, card_holder=info[0], card_number=account_id, balance='-------')
-    elif role == 0:
-        rows = show_account(account_id)
-        # role_name = "Customer" (ctm)
-        cur.execute("select balance from account where account_id = "+str(account_id))
-        balance_ctm = cur.fetchone()[0]
-        return render_template('index.html', logStatus = 0, card_holder=info[0], card_number=account_id, balance=balance_ctm)
-
-    account = [{"account_id": r[0], "balance": r[1],
+    if role == 1 or role == 0:
+        cur.execute("select balance from account where account_id = " + str(account_id))
+        balance = cur.fetchone()[0]
+        if role == 1:
+            rows = show_account()
+            all_account = [{"account_id": r[0], "balance": r[1],
                 "account_status": r[2], "role": r[3]} for r in rows]
-    return render_template('index.html', logStatus = 1)
+            # role_name = "Bank clerk"
+            return render_template('manager.html', logStatus=0, card_holder=info[0],
+                               card_number=account_id, balance=balance, account=all_account)
+        elif role == 0:
+            rows = show_account(account_id)
+            # role_name = "Customer" (ctm)
+            ctm_account = [{"account_id": r[0], "balance": r[1],
+                        "account_status": r[2], "role": r[3]} for r in rows]
+            return render_template('index.html', logStatus=0, card_holder=info[0],
+                               card_number=account_id, balance=balance, account=ctm_account)
+    return render_template('index.html', logStatus=1)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -80,8 +83,8 @@ def register():
     global created_id
     if role == 0:
         """ this is a customer """
-        flash('Customer do not have the right to register another account !!')
-        return redirect(url_for('register'))
+        return render_template('warning.html',
+                               message="Customer do not have the right to register another account !!")
     elif role == 1:
         """ this is a bank clerk """
         rgt_acc_form = RegisterAccountForm()
@@ -93,7 +96,8 @@ def register():
             is_exist = cur.fetchall()
 
             if len(is_exist) != 0:
-                flash('This username already existed !!! ')
+                return render_template('warning.html',
+                                       message="This username already existed !!!")
             else:
                 balance = request.form.get('balance')
                 password_hash = generate_password_hash(request.form.get('register_pass'))
@@ -153,14 +157,14 @@ def send_money():
         balance_check = cur.fetchone()[0]
 
         if balance_check < money_amt:
-            flash("Money amount which will be sent is more than BALANCE!")
-            return redirect(url_for('send_money'))
+            return render_template('warning.html',
+                                   message="Money amount which will be sent is more than BALANCE!")
         else:
             cur.execute("select fullname from systemUser where account_id = "+str(receiver_id))
             receiver_name = cur.fetchone()[0]
             if len(receiver_name) == 0:
-                flash("Receiver's name doesn't exist.")
-                return redirect(url_for('send_money'))
+                return render_template('warning.html',
+                                       message="No suitable receiver existed!")
             else:
                 cur.execute("select fullname from systemUser where account_id = "+str(account_id))
                 sender_name = cur.fetchone()[0]
@@ -253,6 +257,8 @@ def unlock_account():
             acc_unlock = unlock_by_clerk.acc_unlock.data
             return redirect(url_for('unlock_confirm'))
         return render_template('unlock_account.html', form=unlock_by_clerk)
+    elif role == 0:
+        return render_template('warning.html', message="Customer CANNOT UNLOCK. Ask Bank Clerk for helps!")
 
 
 @app.route('/unlock_confirm', methods=['POST', 'GET'])
@@ -263,8 +269,7 @@ def unlock_confirm():
         return redirect(url_for('show_main_page'))
 
 
-"""
-@app.route('logout', methods=['POST', 'GET'])
+@app.route('/logout', methods=['POST', 'GET'])
 def logout():
     global role, account_id, created_id, receiver_id, money_amt
     global money_amt, acc_unlock, acc_lock, fullname
@@ -273,4 +278,3 @@ def logout():
     receiver_id = money_amt = acc_lock = acc_unlock = -1
     fullname = ""
     return redirect(url_for('show_main_page'))
-"""

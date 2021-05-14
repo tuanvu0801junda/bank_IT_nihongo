@@ -141,6 +141,25 @@
                     </div>
                     <br>
 
+                    <table class="table">
+    <tr>account_id": r[0], "balance": r[1],
+                "account_status": r[2], "role"
+        <th>Account ID          </th>
+        <th>Balance             </th>
+        <th>Account Status      </th>
+        <th>Role                </th>
+    </tr>
+    {% for t in account %}
+    <tr>
+        <td>{{ t['account_id']     }}     </td>
+        <td>{{ t['balance']        }}     </td>
+        <td>{{ t['account_status'] }}     </td>
+        <td>{{ t['role']   }}             </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
                     <!-- The dots/circles -->
                     <div style="text-align:center">
                         <span class="dot" onclick="currentSlide(1)"></span>
