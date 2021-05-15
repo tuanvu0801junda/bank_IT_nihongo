@@ -133,7 +133,7 @@ p {
     width: 60%;
     height: 2000px;
     left: 377px;
-    background-color: #000099;
+    background-color: #99c2ff;
     padding: 5px;
     border: inset 3px #b3cbff;
 }
@@ -145,3 +145,50 @@ p {
     height: 650px;
 }
 
+/*==================================================================*/
+
+.customersInform {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    border-collapse: collapse;
+    background-color: #e6eeff;
+}
+
+.customersInform *{
+    border: solid 2px #ccdcff;
+}
+
+.customersInform .firstTR {
+    color: #000099;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: solid 2px red;
+}
+
+.customersInform .informTR {
+    color: #000099;
+    height: 40px;
+    font-size: 23px;
+}
+
+.customersInform .informTR .informTH {
+    text-align: center;
+    /* padding-left: 30px; */
+}
+
+.informTR:nth-child(even) {
+    background-color: #ccdcff;
+}
+
+.greenColor {
+    color: #2d862d;
+}
+
+.redColor {
+    color: #ff3300;
+}

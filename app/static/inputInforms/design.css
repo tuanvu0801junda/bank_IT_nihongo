@@ -1,6 +1,6 @@
 .pageLabel, .registerLabel {
     text-align: center;
-    color: #4d4dff;
+    color: #0000cc;
     text-shadow: 5px 5px 10px #4d4dff;
     font-size: 50px;
 }
@@ -11,7 +11,7 @@
     width: 50%;
     height: fit-content;
     left: 25%;
-    background-color: #b3ecff;
+    background-color: #e6eeff;
     padding: 5px;
     border: inset 3px #b3cbff;
 }
@@ -78,4 +78,66 @@ form input[type="text"], form input[type="password"] {
 
 .right-half-inform {
     text-align: left;
+}
+
+/*==================================================================*/
+
+.message {
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+}
+
+.message a {
+    color: red;
+    display: inline-block;
+}
+
+/*==================================================================*/
+
+#centerPageContain-trans {
+    z-index: 1;
+    position: relative;
+    width: 90%;
+    height: fit-content;
+    left: 5%;
+    padding: 5px;
+}
+
+.transInform {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    border-collapse: collapse;
+    background-color: #e6eeff;
+}
+
+.transInform *{
+    border: solid 2px #ccdcff;
+}
+
+.transInform .firstTR {
+    color: #000099;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: solid 2px red;
+}
+
+.transInform .informTR {
+    color: #000099;
+    height: 40px;
+    font-size: 23px;
+}
+
+.transInform .informTR .informTH {
+    text-align: center;
+    /* padding-left: 30px; */
+}
+
+.informTR:nth-child(even) {
+    background-color: #ccdcff;
 }

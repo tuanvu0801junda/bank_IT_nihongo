@@ -21,7 +21,7 @@
 
             <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
             <map name="bankLabel" id="bankLabel">
-                <area shape="rect" coords="0, 0, 380, 380" href="#">
+                <area shape="rect" coords="0, 0, 380, 380" href="{{url_for('show_user_info')}}">
             </map>
 
             <nav style="align-items: center;">
@@ -45,20 +45,20 @@
             <ul class="menuContain">
                 <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
                 <li id="logBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">
-                    <a  href="#" id="logHref">Đăng nhập</a>
+                    <a href="#" id="logHref">Đăng nhập</a>
                 </li>
                 <!-- <script src="../static/topMenu/script/loginButton.js"></script> -->
 
                 <li id="news-eventBtn">
-                    <a href="" id="newsHref">Tin tức, sự kiện</a>
+                    <a href="#" id="newsHref">Tin tức, sự kiện</a>
                 </li>
 
                 <nav id="navDropdownMenu">
                     <li id="dropDown" style="display: inline-block; width: 220px; visibility: hidden;"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
                         <ul>
-                            <li><a href="http://127.0.0.1:5000/send_money">Chuyển tiền</a></li>
-                            <li><a href="#">Vay tiết kiệm</a></li>
-                            <li><a href="#" style="height: 40px !important;">Khoá thẻ</a></li>
+                            <li><a href="{{url_for('send_money')}}">Chuyển tiền</a></li>
+                            <li><a href="{{url_for('show_trans_history')}}">Lịch sử g.dịch</a></li>
+                            <li><a href="{{url_for('lock_account')}}" style="height: 40px !important;">Khoá thẻ</a></li>
                         </ul>
                     </li>
                 </nav>
@@ -110,7 +110,7 @@
                 <script src="../static/script/getAccountInform.js"></script>
             </div>
 
-            <div id="exchangeRate" class="informDiv">
+            <div id="exchangeRate" class="informDiv" style="visibility: hidden;">
             </div>
 
             <div id="centerPageContain">
@@ -206,7 +206,7 @@
                 document.getElementById("bankLabel").href = "http://127.0.0.1:5000/account";
                 logBtn.onclick = function() {
                     // onclick= "location.href = '{{ url_for('confirm_send_money') }}'"
-                    window.location.href = "http://127.0.0.1:5000";
+                    window.location.href="{{url_for('logout')}}";
                 }
             }
         </script>

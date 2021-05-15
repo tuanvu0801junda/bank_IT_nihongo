@@ -20,8 +20,8 @@
         <div id="topDiv">
 
             <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
-            <map name="bankLabel">
-                <area shape="rect" coords="0, 0, 380, 380" href="http://127.0.0.1:5000/account">
+            <map name="bankLabel" id="bankLabel">
+                <area shape="rect" coords="0, 0, 380, 380" href="{{url_for('show_user_info')}}">
             </map>
 
             <nav style="align-items: center;">
@@ -39,25 +39,26 @@
             </nav>
         </div>
 
-<!-- ========================================Menu bar============================================= -->
+        <!-- ========================================Menu bar============================================= -->
 
         <div id="menuBar">
             <ul class="menuContain">
                 <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
-                <li id="logBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">
-                    <a  href="#" id="logHref">Đăng xuất</a>
+                <li id="logBtn" style="width:auto;">
+                    <a href="#" id="logHref">Đăng xuất</a>
                 </li>
+                <!-- <script src="../static/topMenu/script/loginButton.js"></script> -->
 
                 <li id="news-eventBtn">
-                    <a href="" id="newsHref">Tin tức, sự kiện</a>
+                    <a href="#" id="newsHref">Tin tức, sự kiện</a>
                 </li>
 
                 <nav id="navDropdownMenu">
-                    <li id="dropDown" style="display: inline-block; width: 220px;"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
+                    <li id="dropDown" style="display: inline-block; width: 220px; visibility: hidden;"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
                         <ul>
-                            <li><a href="#">Chuyển tiền</a></li>
-                            <li><a href="#">Vay tiết kiệm</a></li>
-                            <li><a href="#" style="height: 40px !important;">Khoá thẻ</a></li>
+                            <li><a href="{{url_for('send_money')}}">Chuyển tiền</a></li>
+                            <li><a href="{{url_for('show_trans_history')}}">Lịch sử g.dịch</a></li>
+                            <li><a href="{{url_for('lock_account')}}" style="height: 40px !important;">Khoá thẻ</a></li>
                         </ul>
                     </li>
                 </nav>
@@ -74,7 +75,7 @@
         <div id="divBody">
             <div id="centerPageContain">
                 <h1 class="registerLabel">Chuyển tiền</h1>
-                <form action="" method="post">
+                <form action="/send_money" method="post">
                     <div class="property-contain">
                         <label for="money_amt">Số tiền:</label><br>
                         <input type="text" id="input-money_amt" name="money_amt" placeholder="Đơn vị: VND"><br>
@@ -96,5 +97,11 @@
                 </form>
             </div>
         </div>
+
+        <script>
+            document.getElementById("logBtn").onclick = function() {
+                window.location.href="{{url_for('logout')}}";
+            }
+        </script>
 </body>
 </html>

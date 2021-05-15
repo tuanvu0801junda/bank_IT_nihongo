@@ -102,7 +102,7 @@ def register():
                 balance = request.form.get('balance')
                 password_hash = generate_password_hash(request.form.get('register_pass'))
 
-                if request.form.get('role') == "Bank Clerk":
+                if request.form.get('role') == "Bank clerk":
                     created_role = 1
                 else:
                     created_role = 0
@@ -220,11 +220,7 @@ def lock_account():
     global acc_lock
     if role == 1:
         """bank clerk """
-        lock_by_clerk = ClerkLockAccountForm()
-        if lock_by_clerk.is_submitted():
-            acc_lock = lock_by_clerk.acc_lock.data
-            return redirect(url_for('lock_confirm'))
-        return render_template('acc_lock_by_clerk.html', form=lock_by_clerk)
+        return render_template('acc_lock_by_clerk.html')
 
     elif role == 0:
         """ customer """
@@ -238,13 +234,14 @@ def lock_confirm():
     cur = conn.cursor()
     if role == 1:
         """ bank clerk """
+        acc_lock = request.form.get('acc_lock')
         cur.execute("update account set acc_status = false where account_id = "+str(acc_lock))
-        return redirect(url_for('show_main_page'))
+        return redirect(url_for('show_user_info'))
 
     elif role == 0:
         """ customer """
         cur.execute("update account set acc_status = false where account_id = "+str(account_id))
-        return redirect(url_for('show_main_page'))
+        return redirect(url_for('logout'))
 
 
 @app.route('/unlock_account', methods=['POST', 'GET'])
@@ -252,11 +249,7 @@ def unlock_account():
     global acc_unlock
     if role == 1:
         """ bank clerk """
-        unlock_by_clerk = ClerkUnLockAccountForm()
-        if unlock_by_clerk.is_submitted():
-            acc_unlock = unlock_by_clerk.acc_unlock.data
-            return redirect(url_for('unlock_confirm'))
-        return render_template('unlock_account.html', form=unlock_by_clerk)
+        return render_template('unlock_account.html')
     elif role == 0:
         return render_template('warning.html', message="Customer CANNOT UNLOCK. Ask Bank Clerk for helps!")
 
@@ -265,8 +258,9 @@ def unlock_account():
 def unlock_confirm():
     if role == 1:
         cur = conn.cursor()
+        acc_unlock = request.form.get('acc_unlock')
         cur.execute("update account set acc_status = true where account_id = "+str(acc_unlock))
-        return redirect(url_for('show_main_page'))
+        return redirect(url_for('show_user_info'))
 
 
 @app.route('/logout', methods=['POST', 'GET'])

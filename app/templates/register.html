@@ -21,7 +21,7 @@
 
             <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
             <map name="bankLabel">
-                <area shape="rect" coords="0, 0, 380, 380" href="http://127.0.0.1:5000/account">
+                <area shape="rect" coords="0, 0, 380, 380" href="{{url_for('show_user_info')}}">
             </map>
 
             <nav style="align-items: center;">
@@ -39,26 +39,26 @@
             </nav>
         </div>
 
-<!-- ========================================Menu bar============================================= -->
+        <!-- ========================================Menu bar============================================= -->
 
         <div id="menuBar">
             <ul class="menuContain">
                 <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
-                <li id="logBtn" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">
+                <li id="logBtn" style="width:auto;">
                     <a  href="#" id="logHref">Đăng xuất</a>
                 </li>
                 <!-- <script src="../static/topMenu/script/loginButton.js"></script> -->
 
                 <li id="news-eventBtn">
-                    <a href="" id="newsHref">Tin tức, sự kiện</a>
+                    <a href="#" id="newsHref">Tin tức, sự kiện</a>
                 </li>
 
                 <nav id="navDropdownMenu">
                     <li id="dropDown" style="display: inline-block; width: 220px;"><a class="dropdownMenu" href="#">Chức năng</a>
                         <ul>
-                            <li><a href="#">Chuyển tiền</a></li>
-                            <li><a href="#">Vay tiết kiệm</a></li>
-                            <li><a href="#" style="height: 40px !important;">Khoá thẻ</a></li>
+                            <li><a href="{{url_for('register_render')}}">Tạo tài khoản</a></li>
+                            <li><a href="{{url_for('unlock_account')}}">Mở khoá thẻ</a></li>
+                            <li><a href="{{url_for('lock_account')}}" style="height: 40px !important;">Khoá thẻ</a></li>
                         </ul>
                     </li>
                 </nav>
@@ -80,7 +80,7 @@
                         <label for="roles">Chọn role: </label>
                         <div class="custom-select" style="width:200px;">
                             <select name="role" id="choice-roles">
-                                <option value="Customer">Chọn</option>             <!-- Customer by default -->
+                                <option value="Customer">Customer</option>             <!-- Customer by default -->
                                 <option value="Customer">Customer</option>
                                 <option value="Bank clerk">Bank clerk</option>
                             </select>
@@ -110,5 +110,11 @@
                 </form>
             </div>
         </div>
-</body>
+        
+        <script>
+            document.getElementById("logBtn").onclick = function() {
+                window.location.href="{{url_for('logout')}}";
+            }
+        </script>
+    </body>
 </html>

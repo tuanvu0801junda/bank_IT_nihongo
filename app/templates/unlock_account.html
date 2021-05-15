@@ -1,26 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+
+<html>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <head >
+        <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+        <link rel="stylesheet" href="../static/bodyWeb/bodyWeb.css"/>
+        <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
+        <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
+        <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
 
-<h1>Account Unlocked By Clerk</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.acc_unlock.label }}<br>
-            {{ form.acc_unlock(size=32) }}<br>
-        </p>
+        <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
+        <link rel="stylesheet" href="../static/inputInforms/design.css"/>
+        <link rel="stylesheet" href="../static/menu/selectMenu/selectMenu.css"/>
+    </head>
+    <body>
+<!-- =====================================Website Header================================================ -->
 
-        <p>
-            {{ form.reason_unlock.label }}<br>
-            {{ form.reason_unlock(size=40) }}<br>
-        </p>
+        <div id="topDiv">
 
-        <p>{{ form.submit() }}</p>
-    </form>
+            <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
+            <map name="bankLabel">
+                <area shape="rect" coords="0, 0, 380, 380" href="{{url_for('show_user_info')}}">
+            </map>
 
-</body>
+            <nav style="align-items: center;">
+                <ul class="bankInform">
+                    <label>QuaDa Bank</label>
+                    <li id="divLabels">
+                        <div id="facebook_icon"></div>
+                        <div id="email_icon"></div>
+                    </li>
+                    <li id="divLinks">
+                        <a href="https://www.facebook.com/quantd239/" id="link_fb">QuaDa Bank</a>
+                        <a href="https://mail.google.com" id="link_email">quan.td184178@sis.hust.edu.vn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- ========================================Menu bar============================================= -->
+
+        <div id="menuBar">
+            <ul class="menuContain">
+                <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
+                <li id="logBtn" style="width:auto;">
+                    <a  href="#" id="logHref">Đăng xuất</a>
+                </li>
+                <!-- <script src="../static/topMenu/script/loginButton.js"></script> -->
+
+                <li id="news-eventBtn">
+                    <a href="#" id="newsHref">Tin tức, sự kiện</a>
+                </li>
+
+                <nav id="navDropdownMenu">
+                    <li id="dropDown" style="display: inline-block; width: 220px;"><a class="dropdownMenu" href="#">Chức năng</a>
+                        <ul>
+                            <li><a href="{{url_for('register_render')}}">Tạo tài khoản</a></li>
+                            <li><a href="{{url_for('unlock_account')}}">Mở khoá thẻ</a></li>
+                            <li><a href="{{url_for('lock_account')}}" style="height: 40px !important;">Khoá thẻ</a></li>
+                        </ul>
+                    </li>
+                </nav>
+
+                <link rel="stylesheet" href="../static/topMenu/searchBar.css"/>
+                <div id="searchBar">
+                    <input type="text" placeholder="Search.." id="searchBox">
+                </div>
+            </ul>
+        </div>
+
+<!-- ======================================Body=============================================== -->
+
+        <div id="divBody">
+            <div id="centerPageContain">
+                <h1 class="pageLabel">Mở khoá tài khoản</h1>
+                <form action="/unlock_confirm" method="post">
+                    <div class="property-contain">
+                        <label for="acc_unlock">ID tài khoản :</label><br>
+                        <input type="text" id="input-acc_unlock" name="acc_unlock" placeholder="VD : 12345"><br>
+                    </div>
+
+                    <div class="property-contain">
+                        <label for="reason_unlock">Lí do mở khoá :</label><br>
+                        <input type="text" id="input-reason_unlock" name="reason_unlock" placeholder="Lí do..."><br>
+                    </div>
+
+                    <div class="property-contain">
+                        <input type="submit" value="Submit" id="submitBtn">
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <script>
+            document.getElementById("logBtn").onclick = function() {
+                window.location.href="{{url_for('logout')}}";
+            }
+        </script>
+    </body>
 </html>

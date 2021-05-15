@@ -1,15 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+
+<html>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2> Hello, {{ ctm_name }}</h2>
+    <head >
+        <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+        <link rel="stylesheet" href="../static/bodyWeb/bodyWeb.css"/>
+        <link rel="stylesheet" href="../static/topMenu/buttonStyles.css"/>
+        <link rel="stylesheet" href="../static/topMenu/menuLayout.css"/>
+        <link rel="stylesheet" href="../static/topMenu/dropDownMenu.css"/>
+
+        <link rel="stylesheet" href="../static/topWeb/headStyles.css"/>
+        <link rel="stylesheet" href="../static/inputInforms/design.css"/>
+        <!--<script src="jquery.js"></script> -->
+    </head>
+    <body>
+<!-- =====================================Website Header================================================ -->
+
+        <div id="topDiv">
+
+            <img src="../static/images/BankLogoNONBG.png" usemap="#bankLabel">
+            <map name="bankLabel" id="bankLabel">
+                <area shape="rect" coords="0, 0, 380, 380" href="{{url_for('show_user_info')}}">
+            </map>
+
+            <nav style="align-items: center;">
+                <ul class="bankInform">
+                    <label>QuaDa Bank</label>
+                    <li id="divLabels">
+                        <div id="facebook_icon"></div>
+                        <div id="email_icon"></div>
+                    </li>
+                    <li id="divLinks">
+                        <a href="https://www.facebook.com/quantd239/" id="link_fb">QuaDa Bank</a>
+                        <a href="https://mail.google.com" id="link_email">quan.td184178@sis.hust.edu.vn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- ========================================Menu bar============================================= -->
+
+        <div id="menuBar">
+            <ul class="menuContain">
+                <li class="blankSpace" style="width: 200px; height: 100%; display: block;"></li>
+                <li id="logBtn" style="width:auto;">
+                    <a href="#" id="logHref">Đăng xuất</a>
+                </li>
+                <!-- <script src="../static/topMenu/script/loginButton.js"></script> -->
+
+                <li id="news-eventBtn">
+                    <a href="#" id="newsHref">Tin tức, sự kiện</a>
+                </li>
+
+                <nav id="navDropdownMenu">
+                    <li id="dropDown" style="display: inline-block; width: 220px; visibility: hidden;"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
+                        <ul>
+                            <li><a href="{{url_for('send_money')}}">Chuyển tiền</a></li>
+                            <li><a href="{{url_for('show_trans_history')}}">Lịch sử g.dịch</a></li>
+                            <li><a href="{{url_for('lock_account')}}" style="height: 40px !important;">Khoá thẻ</a></li>
+                        </ul>
+                    </li>
+                </nav>
+
+                <link rel="stylesheet" href="../static/topMenu/searchBar.css"/>
+                <div id="searchBar">
+                    <input type="text" placeholder="Search.." id="searchBox">
+                </div>
+            </ul>
+        </div>
+
+<!-- ======================================Body=============================================== -->
+
+        <div id="divBody">
+            <div id="centerPageContain" style="height: 390px !important;">
+                <h1 class="pageLabel">Xin chào, {{ ctm_name }}</h1>
+
+                <div class="message">
+                    <h2 class="confirm-inform">ID tài khoản của bạn : {{ account_id }}</h2>
+                </div>
+
+                <div class="message">
+                    <h2 class="confirm-inform">Nếu bạn xác nhận khoá tài khoản này, bạn sẽ cần đến sự giúp đỡ của <a>NHÂN VIÊN NGÂN HÀNG</a> để <a>MỞ KHOÁ</a></h2>
+                </div>
+
+                <div class="property-contain" style="position: relative; top: 20px">
+                    <input type="button" value="Xác nhận" id="submitBtn">
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("submitBtn").onclick = function() {
+                window.location.href = "{{url_for('lock_confirm')}}";
+            }
+        </script>
+
+        <script>
+            document.getElementById("logBtn").onclick = function() {
+                window.location.href="{{url_for('logout')}}";
+            }
+        </script>
+    </body>
+</html>
+<!-- <h2> Hello, {{ ctm_name }}</h2>
 <h2> Your account ID: {{ account_id }}</h2>
 <h2> If you confirm to lock, you will need BANK CLERK's HELP to UNLOCK</h2>
-<button class="button" onclick="location.href = '{{ url_for('lock_confirm') }}'">
+<button class="button" onclick="window.location.href = '{{ url_for('lock_confirm') }}'">
     Confirm to lock
-</button>
-</body>
-</html>
+</button> -->
