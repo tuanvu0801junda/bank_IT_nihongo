@@ -169,8 +169,8 @@ def send_money():
                 cur.execute("select fullname from systemUser where account_id = "+str(account_id))
                 sender_name = cur.fetchone()[0]
                 return render_template('send_confirm.html', receiver_id=receiver_id, receiver_name=receiver_name,
-                                       money_amt=money_amt, fullname=sender_name, sender_id=account_id, message=message)
-    return render_template('send_money.html', form=send_money_form)
+                                       money_amt=money_amt, fullname=sender_name, sender_id=account_id, message=message, role=role)
+    return render_template('send_money.html', form=send_money_form, role=role)
 
 
 @app.route('/send_money/confirm', methods=['GET', 'POST'])
@@ -189,7 +189,7 @@ def confirm_send_money():
                 "values(" + str(money_amt) + "," + str(account_id) + "," + str(receiver_id) +
                 ",\'"+moment.strftime('%Y-%m-%d %X')+"\')")
     conn.commit()
-    return render_template('sent_successful.html')
+    return render_template('sent_successful.html', role=role)
 
 
 @app.route('/show_trans_history', methods=['GET', 'POST'])
@@ -200,7 +200,7 @@ def show_trans_history():
         all_rows = show_transaction_history()
         all_trans = [{"tran_id": x[0], "tran_date": x[1], "sender_id": x[2], "sender_name": x[3],
                       "money_amt": x[4], "receiver_id": x[5], "receiver_name": x[6]} for x in all_rows]
-        return render_template('show_transaction.html', transaction=all_trans, role="Bank Clerk",
+        return render_template('show_transaction.html', transaction=all_trans, role=1,
                                account_id=account_id, cus_name="")
 
     elif role == 0:
@@ -211,7 +211,7 @@ def show_trans_history():
         cur.execute("select fullname from systemUser where account_id = " + str(account_id))
         cus_name = cur.fetchone()[0]
         return render_template('show_transaction.html', transaction=cus_trans, account_id=account_id,
-                               cus_name=cus_name, role="Customer")
+                               cus_name=cus_name, role=0)
 
 
 @app.route('/lock_account', methods=['POST', 'GET'])

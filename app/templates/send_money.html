@@ -56,6 +56,10 @@
                 <nav id="navDropdownMenu">
                     <li id="dropDown" style="display: inline-block; width: 220px; visibility: hidden;"><a class="dropdownMenu" href="#">Dịch vụ thẻ</a>
                         <ul>
+                            {% if role == 1 %}
+                                <li><a href="{{url_for('register_render')}}">Tạo tài khoản</a></li>
+                                <li><a href="{{url_for('unlock_account')}}">Mở khoá thẻ</a></li>
+                            {% endif %}
                             <li><a href="{{url_for('send_money')}}">Chuyển tiền</a></li>
                             <li><a href="{{url_for('show_trans_history')}}">Lịch sử g.dịch</a></li>
                             <li><a href="{{url_for('lock_account')}}" style="height: 40px !important;">Khoá thẻ</a></li>
